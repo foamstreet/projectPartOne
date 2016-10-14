@@ -1,0 +1,406 @@
+html, body {
+	height: 100%;
+}
+
+html {
+	background-color: #CCCCCC;
+	font-family: 'Montserrat', sans-serif;
+	-webkit-transition: background-color 250ms;
+	transition: background-color 250ms;
+	position: relative;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	margin: 0 auto -4em;
+}
+
+h1 {
+	font-size: 12vw;
+	margin: 2rem 0;
+	text-align: center;
+	-webkit-transition: color 250ms;
+	transition: color 250ms;
+}
+
+header h2 {
+	font-size: 3rem;
+	text-align: center;
+}
+
+/***** Helper Classes *****/
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+/***** Nav *****/
+
+nav a {
+	color: #FFF;
+	font-size: 7vw;
+	text-decoration: none;
+	-webkit-transition: color 400ms;
+	transition: color 400ms;
+}
+
+nav a:hover {
+	color: #808080 !important;
+}
+
+nav li, footer li {
+	list-style: none;
+}
+
+nav.home ul {
+	padding-left: 3vw;
+}
+
+nav.pop {
+	background-color: #000;
+	height: 100%;
+	position: absolute;
+	-webkit-transition: transform 500ms;
+	transition: transform 500ms;
+	width: 15rem;
+}
+
+nav.pop a {
+	font-size: 2rem;
+	padding: 10px;
+}
+
+nav.pop ul {
+	margin-top: 4rem;
+	padding-left: 0;
+}
+
+.pop-in {
+	-webkit-transform: translateX(-15rem);
+	transform: translateX(-15rem);
+}
+
+.pop-out {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+
+/* 
+ * Found this menu button on W3schools 
+ * http://www.w3schools.com/howto/howto_css_menu_icon.asp
+ */
+.menu-btn {
+	float: left;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.bar1, .bar2, .bar3 {
+	background-color: #333;
+	height: 5px;
+	margin: 6px 0;
+	-webkit-transition: 0.4s;
+  transition: 0.4s;
+  width: 35px;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/***** Video Styles *****/
+
+video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#workVideo {
+	display: none;
+}
+
+#aboutVideo {
+	display: none;
+	-webkit-transform: translateX(-50%) translateY(-30%);
+	transform: translateX(-50%) translateY(-30%);
+}
+
+#about {
+	opacity: 0;
+	-webkit-animation: pop-in-l 350ms;
+	animation: pop-in-l 350ms;
+	-webkit-animation-delay: 1000ms;
+	animation-delay: 1000ms;
+	-webkit-transition: -webkit-transform;
+	transition: -webkit-transform;
+	transition: transform;
+	transition: transform, -webkit-transform;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+#work {
+	opacity: 0;
+	-webkit-animation: pop-in-r 350ms;
+	animation: pop-in-r 350ms;
+	-webkit-animation-delay: 1350ms;
+	animation-delay: 1350ms;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-transition: -webkit-transform;
+	transition: -webkit-transform;
+	transition: transform;
+	transition: transform, -webkit-transform;
+}
+
+#contact {
+	opacity: 0;
+	-webkit-animation: pop-in-l 350ms;
+	animation: pop-in-l 350ms;
+	-webkit-animation-delay: 1700ms;
+	animation-delay: 1700ms;
+	-webkit-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+	-webkit-transition: -webkit-transform;
+	transition: -webkit-transform;
+	transition: transform;
+	transition: transform, -webkit-transform;
+}
+
+#contactGraphic {
+	display: none;
+	box-shadow: 1px 3px 5px #000;
+	font-family: 'VT323', monospace;
+	height: 300px;
+	width: 500px;
+	background-color: #FFF;
+	margin-right: 40px;
+	border: 3px solid #bfbfbf;
+}
+
+#bar {
+	text-align: center;
+	padding: 3px 0;
+	height: 18px;
+	width: 100%;
+	background-color: #000066;
+	color: #FFF;
+}
+
+#fakeInput {
+	border: 1px solid #000;
+	height: 253px;
+	font-size: 1.2rem;
+}
+
+#fakeInput p {
+	padding: 0 10px;
+	margin: 10px 0;
+}
+
+#fakeMenu {
+	border: 1px solid #000;
+	border-bottom: 0;
+	padding: 2px 5px;
+	word-spacing: 10px;
+}
+
+#fakeMenu span {
+	text-decoration: underline;
+}
+
+/**** Animations and Related Styles *****/
+
+/* Slide Header Text on Home */
+.slide-down {
+	display: inline-block;
+	-webkit-animation: slide-d 1s;
+	animation: slide-d 1s;
+}
+
+.slide-up {
+	display: inline-block;
+	-webkit-animation: slide-u 1s;
+	animation: slide-u 1s;
+}
+
+@keyframes slide-d {
+  from {opacity: 0; transform: translateY(-30%);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slide-u {
+  from {opacity: 0; transform: translateY(30%);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Pop in animations for menu */
+@keyframes pop-in-l {
+  from {opacity: 0; transform: translateX(-10%);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+@keyframes pop-in-r {
+  from {opacity: 0; transform: translateX(10%);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+/***** type.js  *****/
+.typed-cursor{
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink{
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes blink{
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes blink{
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/***** Form *****/
+
+form {
+	text-align: center;
+}
+
+label {
+	color: #FFF;
+}
+
+label div {
+	margin: 15px;
+}
+
+fieldset {
+	border: none;
+}
+
+input, textarea {
+	border: 1px solid #000;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+button {
+	background-color: #FFF;
+	border: 1px solid #000;
+	border-radius: 5px;
+	font-weight: bold;
+	height: 30px;
+	width: 70px;
+}
+
+button:hover {
+	background-color: #000;
+	color: #FFF;
+}
+
+/***** About *****/
+
+.profile-img {
+	border-radius: 50%;
+	vertical-align: middle;
+	height: 12rem;
+	margin-right: 1rem;
+}
+
+#bio {
+	display: table;
+	margin: auto;
+	width: 75%;
+}
+
+#bio span {
+	color: #FFF;
+	display: table-cell;
+	font-size: 2rem; 
+	vertical-align: middle;
+}
+
+/***** Work *****/
+
+.work-block {
+	color: #FFF;
+	padding: 0 20px;	
+}
+
+.work-block ul {
+	padding-left: 20px;
+}
+
+.work-block ul:last-child {
+	padding-left: 40px;
+}
+
+.work-block img {
+	border-radius: 5px;
+	margin-right: 10px;
+	width: 50%;
+}
+
+/* 
+ * Found sticky footer style 
+ * http://ryanfait.com/resources/footer-stick-to-bottom-of-page/ 
+ */
+footer {
+	color: #777;
+	font-size: .7rem;
+	text-align: center;
+	width: 100%;
+}
+
+footer ul {
+	padding-left: 0;
+}
+
+footer, .push {
+	height: 4em;
+}
