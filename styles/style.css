@@ -1,26 +1,35 @@
-html, body {
-	height: 100%;
-}
-
 html {
-	background-color: #CCCCCC;
-	font-family: 'Montserrat', sans-serif;
-	-webkit-transition: background-color 250ms;
-	transition: background-color 250ms;
-	position: relative;
+  min-height: 100%;
+  position: relative;
 }
 
 body {
-	margin: 0;
-	padding: 0;
+  transition: background-color 1s;
+  -webkit-transition: background-color 250ms;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
 }
 
-.container {
-	height: auto !important;
-	height: 100%;
-	min-height: 100%;
-	margin: 0 auto -4em;
-}
+/*#loader {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border: 16px solid #EEE;
+  border-radius: 50%;
+  border-top: 16px solid #000;
+  position: absolute;
+  margin: -70px 0 0 -70px;
+  top: 50%;
+  left: 50%;
+  animation: spin 2s linear infinite;
+}*/
+
+/*@keyframes spin {
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+}*/
 
 h1 {
 	font-size: 12vw;
@@ -30,54 +39,69 @@ h1 {
 	transition: color 250ms;
 }
 
+h1 span {
+	display: inline-block;
+	-webkit-animation-fill-mode: forwards !important;
+	animation-fill-mode: forwards !important;
+}
+
 header h2 {
-	font-size: 3rem;
+	font-size: 5rem;
+  margin-top: 0;
+  padding-top: 50px;
 	text-align: center;
-}
-
-/***** Helper Classes *****/
-
-.pull-left {
-	float: left;
-}
-
-.pull-right {
-	float: right;
-}
-
-.clear {
-	clear: both;
 }
 
 /***** Nav *****/
 
 nav a {
-	color: #FFF;
+	color: #bfbfbf;
 	font-size: 7vw;
-	text-decoration: none;
 	-webkit-transition: color 400ms;
 	transition: color 400ms;
 }
 
 nav a:hover {
-	color: #808080 !important;
+	color: #FFF !important;
+  text-decoration: none;
 }
 
-nav li, footer li {
+nav a:focus {
+  text-decoration: none !important;
+}
+
+nav li {
 	list-style: none;
 }
 
 nav.home ul {
-	padding-left: 3vw;
+  position: relative;
+	padding-left: 1.5vw;
+}
+
+@media screen and (max-width: 550px) {
+    .home h1 {
+        font-size: 20vw;
+    }
+
+    nav.home a {
+      font-size: 13vw;
+    }
+
+    nav.home ul {
+    	padding-left: 3.2vw;
+    }
 }
 
 nav.pop {
-	background-color: #000;
-	height: 100%;
-	position: absolute;
+	background-color: #000	;
+	height: 100vh;
+	opacity: .9;
+	position: fixed;
 	-webkit-transition: transform 500ms;
 	transition: transform 500ms;
-	width: 15rem;
+	width: 100vw;
+  z-index: 1000;
 }
 
 nav.pop a {
@@ -91,8 +115,8 @@ nav.pop ul {
 }
 
 .pop-in {
-	-webkit-transform: translateX(-15rem);
-	transform: translateX(-15rem);
+	-webkit-transform: translateX(-100vw);
+	transform: translateX(-100vw);
 }
 
 .pop-out {
@@ -100,14 +124,16 @@ nav.pop ul {
 	transform: translateX(0);
 }
 
-/* 
- * Found this menu button on W3schools 
+/*
+ * Found this menu button on W3schools
  * http://www.w3schools.com/howto/howto_css_menu_icon.asp
  */
 .menu-btn {
 	float: left;
-	margin-top: 5px;
+  position: fixed;
+	padding-top: 10px;
 	margin-left: 10px;
+  z-index: 10000;
 }
 
 .bar1, .bar2, .bar3 {
@@ -146,128 +172,96 @@ video {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: -100;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-40%);
+	transform: translateX(-50%) translateY(-40%);
 }
 
-#workVideo {
+#workVideo, #aboutVideo, #contactVideo {
 	display: none;
 }
 
-#aboutVideo {
-	display: none;
-	-webkit-transform: translateX(-50%) translateY(-30%);
-	transform: translateX(-50%) translateY(-30%);
-}
-
-#about {
-	opacity: 0;
+.pop-in-left {
 	-webkit-animation: pop-in-l 350ms;
 	animation: pop-in-l 350ms;
-	-webkit-animation-delay: 1000ms;
-	animation-delay: 1000ms;
-	-webkit-transition: -webkit-transform;
-	transition: -webkit-transform;
-	transition: transform;
-	transition: transform, -webkit-transform;
-	-webkit-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
 }
 
-#work {
-	opacity: 0;
+.pop-in-right {
 	-webkit-animation: pop-in-r 350ms;
 	animation: pop-in-r 350ms;
-	-webkit-animation-delay: 1350ms;
-	animation-delay: 1350ms;
+}
+
+.pop-out-left {
+	-webkit-animation: pop-out-l 100ms;
+	animation: pop-out-l 100ms;
+}
+
+.pop-out-right {
+	-webkit-animation: pop-out-r 100ms;
+	animation: pop-out-r 100ms;
+}
+
+#about.home, #work.home, #contact.home {
+	opacity: 0;
+	-webkit-transition: -webkit-transform;
+	transition: -webkit-transform;
+	transition: transform;
 	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
-	-webkit-transition: -webkit-transform;
-	transition: -webkit-transform;
-	transition: transform;
-	transition: transform, -webkit-transform;
 }
 
-#contact {
-	opacity: 0;
-	-webkit-animation: pop-in-l 350ms;
-	animation: pop-in-l 350ms;
-	-webkit-animation-delay: 1700ms;
-	animation-delay: 1700ms;
-	-webkit-animation-fill-mode:forwards;
-	animation-fill-mode:forwards;
-	-webkit-transition: -webkit-transform;
-	transition: -webkit-transform;
-	transition: transform;
-	transition: transform, -webkit-transform;
+#about.home {
+	animation-delay: 500ms;
 }
 
-#contactGraphic {
-	display: none;
-	box-shadow: 1px 3px 5px #000;
-	font-family: 'VT323', monospace;
-	height: 300px;
-	width: 500px;
-	background-color: #FFF;
-	margin-right: 40px;
-	border: 3px solid #bfbfbf;
+#work.home {
+	animation-delay: 850ms;
 }
 
-#bar {
-	text-align: center;
-	padding: 3px 0;
-	height: 18px;
-	width: 100%;
-	background-color: #000066;
-	color: #FFF;
+#contact.home {
+	animation-delay: 1200ms;
 }
 
-#fakeInput {
-	border: 1px solid #000;
-	height: 253px;
-	font-size: 1.2rem;
-}
-
-#fakeInput p {
-	padding: 0 10px;
-	margin: 10px 0;
-}
-
-#fakeMenu {
-	border: 1px solid #000;
-	border-bottom: 0;
-	padding: 2px 5px;
-	word-spacing: 10px;
-}
-
-#fakeMenu span {
-	text-decoration: underline;
-}
-
-/**** Animations and Related Styles *****/
+/*** Animations and Related Styles *****/
 
 /* Slide Header Text on Home */
-.slide-down {
-	display: inline-block;
-	-webkit-animation: slide-d 1s;
-	animation: slide-d 1s;
+.slide-down-in {
+	-webkit-animation: slide-d-in 500ms;
+	animation: slide-d-in 500ms;
 }
 
-.slide-up {
-	display: inline-block;
-	-webkit-animation: slide-u 1s;
-	animation: slide-u 1s;
+.slide-up-in {
+	-webkit-animation: slide-u-in 500ms;
+	animation: slide-u-in 500ms;
 }
 
-@keyframes slide-d {
+.slide-down-out {
+	-webkit-animation: slide-d-out 250ms;
+	animation: slide-d-out 250ms;
+}
+
+.slide-up-out {
+	-webkit-animation: slide-u-out 250ms;
+	animation: slide-u-out 250ms;
+}
+
+@keyframes slide-d-in {
   from {opacity: 0; transform: translateY(-30%);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-@keyframes slide-u {
+@keyframes slide-u-in {
   from {opacity: 0; transform: translateY(30%);}
   to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slide-d-out {
+  from {opacity: 1; transform: translateY(0%);}
+  to {opacity: 0; transform: translateY(-30%);}
+}
+
+@keyframes slide-u-out {
+  from {opacity: 1; transform: translateY(0%);}
+  to {opacity: 0; transform: translateY(30%);}
 }
 
 /* Pop in animations for menu */
@@ -281,126 +275,270 @@ video {
   to {opacity: 1; transform: translateX(0);}
 }
 
-/***** type.js  *****/
-.typed-cursor{
-  opacity: 1;
-  -webkit-animation: blink 0.7s infinite;
-  animation: blink 0.7s infinite;
+@keyframes pop-out-l {
+  from {opacity: 1; transform: translateX(0);}
+  to {opacity: 0; transform: translateX(-10%);}
 }
 
-@keyframes blink{
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes pop-out-r {
+  from {opacity: 1; transform: translateX(0);}
+  to {opacity: 0; transform: translateX(10%);}
 }
-@-webkit-keyframes blink{
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+
+/***** Contact *****/
+
+.errors {
+  text-align: center;
+  color: #ff6666;
 }
-@-moz-keyframes blink{
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+
+.title {
+  margin: auto;
+  overflow: hidden;
+  width: 142px;
+}
+
+.container.about {
+  text-align: center;
+}
+
+div.alert {
+  position: absolute;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:1000;
 }
 
 /***** Form *****/
 
-form {
-	text-align: center;
+form div:last-child {
+  margin-top: 20px;
 }
 
-label {
-	color: #FFF;
-}
-
-label div {
-	margin: 15px;
+form input[type="radio"] {
+  display: inline-block;
+  height: 125px;
+  width: inherit;
 }
 
 fieldset {
-	border: none;
+  border: none;
 }
 
-input, textarea {
-	border: 1px solid #000;
-	padding: 5px;
-	border-radius: 5px;
-	font-size: 1rem;
+label {
+  display: inline-block;
+}
+
+label div {
+  font-size: 1.25rem;
+  overflow: hidden;
+}
+
+label + div {
+  margin-top: 40px;
+}
+
+label div.title p {
+  color: #ff6666;
+}
+
+label img {
+  height: 100px;
+  margin: 15px;
+}
+
+label input {
+  background-color: transparent;
+  border-width: 0 0 2px 0;
+  border-bottom: 2px solid #000;
+  margin: auto;
+  padding: 5px 5px 0 5px;
+  /*width: 250px;*/
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder  {
+  transition: text-indent 250ms;
+}
+
+input[type="text"], textarea {
+  font-size: 1.8rem;
+}
+
+textarea {
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.name-input {
+  width: 49.5%;
 }
 
 button {
-	background-color: #FFF;
-	border: 1px solid #000;
-	border-radius: 5px;
-	font-weight: bold;
-	height: 30px;
-	width: 70px;
+  display: block;
+  margin: auto;
+  background: #FFF;
+  border: 2px solid #555;
+  border-radius: 5px;
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 10px;
+  width: 120px;
 }
 
 button:hover {
-	background-color: #000;
-	color: #FFF;
+  background: #000;
+  color: #FFF;
+}
+
+/***** Animation *****/
+
+/* Hides input labels outside of div overflow */
+.hide-labels {
+  transform: translateX(140px);
+  transition: transform 250ms, color 100ms;
+}
+
+/* Slides labels into view */
+.slide-in-labels {
+  transform: translateX(0);
+}
+
+/* Slides placeholder text to the left with negative text-indent property */
+.slide-placeholder-out::-webkit-input-placeholder {
+  text-indent: -100%;
 }
 
 /***** About *****/
 
 .profile-img {
-	border-radius: 50%;
-	vertical-align: middle;
-	height: 12rem;
-	margin-right: 1rem;
+	border: 3px solid #000;
+	display: block;
+	position: relative;
+	transition: width 200ms;
+	margin: auto;
+  vertical-align: middle;
+	width: 15rem;
+  z-index: 100;
+}
+
+.fa-arrow-down {
+  animation: slide-d-in;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  display: block;
+  text-align: center;
+  position: relative;
+  top: 100px;
 }
 
 #bio {
-	display: table;
-	margin: auto;
-	width: 75%;
+	position: relative;
+  top: 3rem;
+  display: flex;
+  align-items: center;
 }
 
 #bio span {
-	color: #FFF;
-	display: table-cell;
-	font-size: 2rem; 
-	vertical-align: middle;
+	color: #fff;
+	font-size: 3rem;
+	position: absolute;
+	left: 0;
+	right: 10rem;
+	overflow: hidden;
+	width: 0;
+	margin: auto;
+	white-space: nowrap;
 }
 
-/***** Work *****/
-
-.work-block {
-	color: #FFF;
-	padding: 0 20px;	
+#bio-mobile {
+  position: relative;
 }
 
-.work-block ul {
-	padding-left: 20px;
+#bio-mobile p {
+  margin-top: 15px;
 }
 
-.work-block ul:last-child {
-	padding-left: 40px;
+#about-one,
+#about-two,
+#about-three,
+#about-four {
+  height: 100vh;
 }
 
-.work-block img {
-	border-radius: 5px;
-	margin-right: 10px;
-	width: 50%;
+#about-three div {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* 
- * Found sticky footer style 
- * http://ryanfait.com/resources/footer-stick-to-bottom-of-page/ 
+#about-three div img {
+  padding: 10px;
+}
+
+#about-three h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 5rem;
+  opacity: 0;
+}
+
+#about-three img {
+  opacity: 0;
+  height: 200px;
+  transition: opacity 1500ms;
+}
+
+#about-four img {
+  opacity: 0;
+}
+
+#about-four h2 {
+  position: relative;
+  text-align: center;
+  padding-top: 3rem;
+  opacity: 0;
+}
+
+#about-four h2:hover {
+  text-decoration: none;
+}
+
+/*
+ * Footer
  */
+
 footer {
-	color: #777;
-	font-size: .7rem;
-	text-align: center;
-	width: 100%;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
 }
 
-footer ul {
-	padding-left: 0;
+footer p {
+  color: #bfbfbf;
+  bottom: 0;
+  font-size: .5rem;
+  align-self: flex-end;
+  margin-bottom: 0;
 }
 
-footer, .push {
-	height: 4em;
+/***** Work  *****/
+
+.work-description {
+  margin-top: 20px;
+  display: relative;
 }
